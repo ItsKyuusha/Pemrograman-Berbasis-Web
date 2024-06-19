@@ -15,16 +15,14 @@ public class JavaDB {
     static ResultSet rs;
 
     public static void main(String[] args) {
-        //insert();
-        //show();
+        insert();
         //update("brg17", "Mie Goreng Aceh", "Pack", 50, 2);
-        //show();
-        delete("brg18");
+        //delete("brg17");
         show();
     }
 
     public static void insert() {
-        String kode_brg = "brg18";
+        String kode_brg = "brg17";
         String nama_brg = "Mie Rebus";
         String satuan = "Bungkus";
         int stok = 30;

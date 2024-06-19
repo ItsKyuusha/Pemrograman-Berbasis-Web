@@ -16,11 +16,9 @@ public class JavaDB3 {
 
     public static void main(String[] args) {
         //insert();
+        //update(1, "Si Kancil", 2022, 20, "Anisa Syalma");
+        //delete(2);
         //show();
-        //update(1, "Mie Goreng Aceh", 2023, 50, "Penulis Baru");
-        //show();
-        delete(2);
-        show();
     }
 
     public static void insert() {

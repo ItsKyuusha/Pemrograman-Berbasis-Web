@@ -16,8 +16,7 @@ public class JavaDB2 {
 
     public static void main(String[] args) {
         insert();
-        //show();
-        //update("brg17", "Mie Goreng Aceh", "Pack", 50, 2);
+        //update(1, "Si Kancil", 2022, 20, "Anisa Syalma");
         //show();
         //delete("1");
         show();
