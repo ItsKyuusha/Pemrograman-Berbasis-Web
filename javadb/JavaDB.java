@@ -13,7 +13,6 @@ public class JavaDB {
     static Connection conn;
     static Statement stmt;
     static ResultSet rs;
-
     public static void main(String[] args) {
         insert();
         //update("brg17", "Mie Goreng Aceh", "Pack", 50, 2);
