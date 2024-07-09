@@ -1,15 +1,28 @@
+package sistempendaftaranmahasiswa;
+
+import java.sql.*;
+import java.text.Format;
+import javax.swing.*;
+import javax.swing.table.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.SQLException;
 /*
+
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package sistempendaftaranmahasiswa;
+
 
 /**
  *
  * @author Kyuusha
  */
 public class PENDAFTARAN extends javax.swing.JFrame {
-
+public String tgl_lahir;
     /**
      * Creates new form PENDAFTARAN
      */
@@ -29,39 +42,44 @@ public class PENDAFTARAN extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        NAMA_LENGKAP = new javax.swing.JTextField();
+        TEMPAT = new javax.swing.JTextField();
+        TGL = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        JENIS_KELAMIN = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        AGAMA = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        KEWARGANEGARAAN = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        NO_TELP = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        EMAIL = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        ALAMAT = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        ASAL_SEKOLAH = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        NAMA_WALI = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        PENDIDIKAN_WALI = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        PROFESI_WALI = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        NO_TELP_WALI = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        PRODI = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        FAKULTAS = new javax.swing.JTextField();
+        tb_submit = new javax.swing.JButton();
+        tb_edit = new javax.swing.JButton();
+        tb_hapus = new javax.swing.JButton();
+        tb_batal = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        ID_MAHASISWA = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        cari = new javax.swing.JTextField();
+        tb_cari = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,247 +90,441 @@ public class PENDAFTARAN extends javax.swing.JFrame {
 
         jLabel3.setText("Tempat, Tanggal Lahir");
 
-        jTextField1.setText("...........................................................................");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        NAMA_LENGKAP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NAMA_LENGKAPActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("...............................");
+        TEMPAT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEMPATActionPerformed(evt);
+            }
+        });
+
+        TGL.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                TGLPropertyChange(evt);
+            }
+        });
 
         jLabel4.setText("Jenis Kelamin");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki - Laki", "Perempuan" }));
+        JENIS_KELAMIN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki - Laki", "Perempuan" }));
 
         jLabel5.setText("Agama");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Islam", "Katolik", "Protestan", "konghucu", "Hindu", "Buddha", "Lainnya" }));
+        AGAMA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Islam", "Katolik", "Protestan", "konghucu", "Hindu", "Buddha", "Lainnya" }));
 
         jLabel6.setText("Kewarganegaraan");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "WNI (Warga Negara Indonesia)", "WNA ( Warga Negara Asing)" }));
+        KEWARGANEGARAAN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "WNI", "WNA" }));
 
         jLabel7.setText("No. Telp");
 
-        jTextField3.setText("............................................................................");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        NO_TELP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                NO_TELPActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Alamat");
+        jLabel8.setText("Email");
 
-        jTextField4.setText("............................................................................");
-
-        jLabel9.setText("Email");
-
-        jTextField5.setText("...........................................................................");
+        jLabel9.setText("Alamat");
 
         jLabel10.setText("Asal Sekolah");
 
-        jTextField6.setText("............................................................................");
-
-        jLabel11.setText("Nama Ayah");
-
-        jTextField7.setText("...........................................................................");
+        jLabel11.setText("Nama Wali");
 
         jLabel12.setText("Pendidikan Terakhir Wali");
 
-        jTextField8.setText("............................................................................");
-
         jLabel13.setText("Pekerjaan Wali");
-
-        jTextField9.setText("...........................................................................");
 
         jLabel14.setText("No.Telp Wali");
 
-        jTextField10.setText("...........................................................................");
-
         jLabel15.setText("Program Studi Pilihan");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PRODI.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teknik Informatika", "DKV", "Sistem Informasi", "Manajemen", "Akuntansi", "Kesehatan Masyarakat", "Rekam Medis", "Teknik Industri", "Teknik Mesin", "Sastra Jepang", "Sastra Inggris" }));
 
         jLabel16.setText("Fakultas");
 
-        jTextField11.setText("Automatic");
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        FAKULTAS.setText("Automatic");
+        FAKULTAS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                FAKULTASActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tb_submit.setText("Submit");
+        tb_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                tb_submitActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Edit");
+        tb_edit.setText("Edit");
+        tb_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tb_editActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Edit");
+        tb_hapus.setText("Hapus");
+        tb_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tb_hapusActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Batal");
+        tb_batal.setText("Batal");
+        tb_batal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tb_batalActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("ID_Mahasiswa");
+
+        ID_MAHASISWA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ID_MAHASISWAActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Cari");
+
+        tb_cari.setText("Cari");
+        tb_cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tb_cariActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(104, 104, 104))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel16))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField7)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField9)
-                            .addComponent(jTextField10)
-                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField11)))
+                                .addComponent(jLabel15)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel17))
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NAMA_LENGKAP)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(TEMPAT, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(TGL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(JENIS_KELAMIN, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(AGAMA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(KEWARGANEGARAAN, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(NO_TELP)
+                                    .addComponent(EMAIL)
+                                    .addComponent(ALAMAT)
+                                    .addComponent(ASAL_SEKOLAH)
+                                    .addComponent(NAMA_WALI)
+                                    .addComponent(PENDIDIKAN_WALI)
+                                    .addComponent(PROFESI_WALI)
+                                    .addComponent(NO_TELP_WALI)
+                                    .addComponent(PRODI, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(FAKULTAS)
+                                    .addComponent(ID_MAHASISWA)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel15)
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jButton1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tb_cari)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(tb_submit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tb_edit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tb_hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tb_batal, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(ID_MAHASISWA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(TEMPAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TGL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(JENIS_KELAMIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(AGAMA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(KEWARGANEGARAAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(NO_TELP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(EMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(ALAMAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(ASAL_SEKOLAH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(NAMA_WALI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(PENDIDIKAN_WALI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(PROFESI_WALI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(NO_TELP_WALI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(PRODI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(FAKULTAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(NAMA_LENGKAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tb_submit)
+                    .addComponent(tb_edit)
+                    .addComponent(tb_hapus)
+                    .addComponent(tb_batal)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(tb_cari)
+                        .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void NAMA_LENGKAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NAMA_LENGKAPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_NAMA_LENGKAPActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void NO_TELPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NO_TELPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_NO_TELPActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void FAKULTASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FAKULTASActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_FAKULTASActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void tb_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_submitActionPerformed
+        try{
+            String sql="insert into mahasiswa values('"
+                    +ID_MAHASISWA.getText()+"','"
+                    +NAMA_LENGKAP.getText()+"','"
+                    +TEMPAT.getText()+"','"
+                    +tgl_lahir+"','"
+                    +JENIS_KELAMIN.getSelectedItem()+"','"
+                    +AGAMA.getSelectedItem()+"','"
+                    +KEWARGANEGARAAN.getSelectedItem()+"','"
+                    +NO_TELP.getText()+"','"
+                    +EMAIL.getText()+"','"
+                    +ALAMAT.getText()+"','"
+                    +ASAL_SEKOLAH.getText()+"','"
+                    +NAMA_WALI.getText()+"','"
+                    +PENDIDIKAN_WALI.getText()+"','"
+                    +PROFESI_WALI.getText()+"','"
+                    +NO_TELP_WALI.getText()+"','"
+                    +PRODI.getSelectedItem()+"','"
+                    +FAKULTAS.getText()+"')";
+                 java.sql.Connection conn=(java.sql.Connection)sistempendaftaranmahasiswa.Koneksi.koneksiDB();
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil disimpan");
+            
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Gagal disimpan");
+            System.out.println(e.getMessage());
+        }
+
+    }//GEN-LAST:event_tb_submitActionPerformed
+
+    private void TEMPATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEMPATActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_TEMPATActionPerformed
+
+    private void TGLPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TGLPropertyChange
+        if (TGL.getDate()!=null){
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        tgl_lahir=format.format (TGL.getDate());
+    }
+
+    }//GEN-LAST:event_TGLPropertyChange
+
+    private void ID_MAHASISWAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_MAHASISWAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ID_MAHASISWAActionPerformed
+
+    private void tb_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_editActionPerformed
+        try {
+            java.sql.Connection conn = (java.sql.Connection) sistempendaftaranmahasiswa.Koneksi.koneksiDB();
+            String sql = "UPDATE mahasiswa SET NAMA_LENGKAP=?, TEMPAT=?, TGL=?, JENIS_KELAMIN=?, AGAMA=?, KEWARGANEGARAAN=?, NO_TELP=?, EMAIL=?, ALAMAT=?, ASAL_SEKOLAH=?, NAMA_WALI=?, PENDIDIKAN_WALI=?, PROFESI_WALI=?, NO_TELP_WALI=?, PRODI=?, FAKULTAS=? WHERE ID_MAHASISWA=?";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+
+            // Mengatur nilai untuk parameter
+            pst.setString(1, NAMA_LENGKAP.getText());
+            pst.setString(2, TEMPAT.getText());
+            pst.setString(3, tgl_lahir);
+            pst.setString(4, (String) JENIS_KELAMIN.getSelectedItem());
+            pst.setString(5, (String) AGAMA.getSelectedItem());
+            pst.setString(6, (String) KEWARGANEGARAAN.getSelectedItem());
+            pst.setString(7, NO_TELP.getText());
+            pst.setString(8, EMAIL.getText());
+            pst.setString(9, ALAMAT.getText());
+            pst.setString(10, ASAL_SEKOLAH.getText());
+            pst.setString(11, NAMA_WALI.getText());
+            pst.setString(12, PENDIDIKAN_WALI.getText());
+            pst.setString(13, PROFESI_WALI.getText());
+            pst.setString(14, NO_TELP_WALI.getText());
+            pst.setString(15, (String) PRODI.getSelectedItem());
+            pst.setString(16, FAKULTAS.getText());
+            pst.setInt(17, Integer.parseInt(ID_MAHASISWA.getText()));
+
+            // Menjalankan perintah update
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Data berhasil di Koreksi");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Proses Edit data Gagal");
+            System.out.println(e.getMessage());
+        }
+
+    }//GEN-LAST:event_tb_editActionPerformed
+
+    private void tb_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_hapusActionPerformed
+        try{
+            java.sql.Connection conn=(java.sql.Connection)sistempendaftaranmahasiswa.Koneksi.koneksiDB();
+            String sql = "delete from mahasiswa where ID_MAHASISWA='"+ID_MAHASISWA.getText()+"' ";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.executeUpdate(); JOptionPane.showMessageDialog(null,"Data berhasil di hapus");
+            
+            }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Proses Penghapusan Gagal");
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_tb_hapusActionPerformed
+
+    private void tb_batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_batalActionPerformed
+        ID_MAHASISWA.setText("");
+        NAMA_LENGKAP.setText("");
+        TEMPAT.setText("");
+        TGL.setDate(null);
+        JENIS_KELAMIN.setSelectedItem("");
+        AGAMA.setSelectedItem("");
+        KEWARGANEGARAAN.setSelectedItem("");
+        NO_TELP.setText("");
+        EMAIL.setText("");
+        ALAMAT.setText("");
+        ASAL_SEKOLAH.setText("");
+        NAMA_WALI.setText("");
+        PENDIDIKAN_WALI.setText("");
+        PROFESI_WALI.setText("");
+        NO_TELP_WALI.setText("");
+        PRODI.setSelectedItem("");
+        FAKULTAS.setText("");
+        ID_MAHASISWA.requestFocus();           
+
+    }//GEN-LAST:event_tb_batalActionPerformed
+
+    private void tb_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_cariActionPerformed
+        try {
+            java.sql.Connection conn=(java.sql.Connection)sistempendaftaranmahasiswa.Koneksi.koneksiDB();
+            String sql = "Select * from mahasiswa where ID_MAHASISWA='"+cari.getText()+"' or NAMA_LENGKAP='"+cari.getText()+"'";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery(sql);
+            if (rs.next()){
+                ID_MAHASISWA.setText(rs.getString(1));
+                NAMA_LENGKAP.setText(rs.getString(2));
+                TEMPAT.setText(rs.getString(3));
+                TGL.setDate(rs.getDate(4));
+                JENIS_KELAMIN.setSelectedItem(rs.getString(5));
+                AGAMA.setSelectedItem(rs.getString(6));
+                KEWARGANEGARAAN.setSelectedItem(rs.getString(7));
+                NO_TELP.setText(rs.getString(8));
+                EMAIL.setText(rs.getString(9));
+                ALAMAT.setText(rs.getString(10));
+                ASAL_SEKOLAH.setText(rs.getString(11));
+                NAMA_WALI.setText(rs.getString(12));
+                PENDIDIKAN_WALI.setText(rs.getString(13));
+                PROFESI_WALI.setText(rs.getString(14));
+                NO_TELP_WALI.setText(rs.getString(15));
+                PRODI.setSelectedItem(rs.getString(16));
+                FAKULTAS.setText(rs.getString(17));
+                JOptionPane.showMessageDialog(null,"Data Mahasiswa : "
+                + cari.getText() + " ditemukan, Apakah Anda Ingin Mengedit atau Menghapus?");
+            }
+        } catch (Exception e){}
+        cari.requestFocus();
+
+    }//GEN-LAST:event_tb_cariActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,15 +562,24 @@ public class PENDAFTARAN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> AGAMA;
+    private javax.swing.JTextField ALAMAT;
+    private javax.swing.JTextField ASAL_SEKOLAH;
+    private javax.swing.JTextField EMAIL;
+    private javax.swing.JTextField FAKULTAS;
+    private javax.swing.JTextField ID_MAHASISWA;
+    private javax.swing.JComboBox<String> JENIS_KELAMIN;
+    private javax.swing.JComboBox<String> KEWARGANEGARAAN;
+    private javax.swing.JTextField NAMA_LENGKAP;
+    private javax.swing.JTextField NAMA_WALI;
+    private javax.swing.JTextField NO_TELP;
+    private javax.swing.JTextField NO_TELP_WALI;
+    private javax.swing.JTextField PENDIDIKAN_WALI;
+    private javax.swing.JComboBox<String> PRODI;
+    private javax.swing.JTextField PROFESI_WALI;
+    private javax.swing.JTextField TEMPAT;
+    private com.toedter.calendar.JDateChooser TGL;
+    private javax.swing.JTextField cari;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -367,6 +588,8 @@ public class PENDAFTARAN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -375,16 +598,10 @@ public class PENDAFTARAN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton tb_batal;
+    private javax.swing.JButton tb_cari;
+    private javax.swing.JButton tb_edit;
+    private javax.swing.JButton tb_hapus;
+    private javax.swing.JButton tb_submit;
     // End of variables declaration//GEN-END:variables
 }
