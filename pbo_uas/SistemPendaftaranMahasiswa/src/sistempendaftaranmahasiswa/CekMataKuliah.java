@@ -4,6 +4,17 @@
  */
 package sistempendaftaranmahasiswa;
 
+import java.sql.*;
+import java.text.Format;
+import javax.swing.*;
+import javax.swing.table.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  *
  * @author avitya zoogy pramana
@@ -15,6 +26,7 @@ public class CekMataKuliah extends javax.swing.JFrame {
      */
     public CekMataKuliah() {
         initComponents();
+        tampil_data();
     }
 
     /**
@@ -29,8 +41,8 @@ public class CekMataKuliah extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        cari = new javax.swing.JTextField();
+        tb_cari = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -61,28 +73,28 @@ public class CekMataKuliah extends javax.swing.JFrame {
 
         jLabel1.setText("Input ID Prodi");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                cariActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Cari");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tb_cari.setText("Cari");
+        tb_cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                tb_cariActionPerformed(evt);
             }
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Mata Kuliah", "Nama Mata Kuliah", "Dosen"
+                "Kode Mata Kuliah", "Nama Mata Kuliah", "Dosen", "Kode Prodi"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -104,9 +116,9 @@ public class CekMataKuliah extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(84, 84, 84)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tb_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -120,8 +132,8 @@ public class CekMataKuliah extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tb_cari)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,14 +143,50 @@ public class CekMataKuliah extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_cariActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void tb_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_cariActionPerformed
+        try {
+            java.sql.Connection conn=(java.sql.Connection)sistempendaftaranmahasiswa.Koneksi.koneksiDB();
+            String sql = "Select * from matkul where KODE_PRODI='"+cari.getText()+"'";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery(sql);
+            
+        } catch (Exception e){}
+        cari.requestFocus();
 
+    }//GEN-LAST:event_tb_cariActionPerformed
+
+    public void tampil_data(){
+        DefaultTableModel tabel=new DefaultTableModel();
+        tabel.addColumn("KODE MATA KULIAH");
+        tabel.addColumn("NAMA MATA KULIAH");
+        tabel.addColumn("DOSEN");
+        tabel.addColumn("KODE PRODI");
+        
+        try {
+            java.sql.Connection conn = (java.sql.Connection) sistempendaftaranmahasiswa.Koneksi.koneksiDB();
+            String sql = "select * from matkul";
+            java.sql.PreparedStatement pst= conn.prepareStatement ( sql);
+            ResultSet rs = pst.executeQuery( sql);
+          while(rs.next())
+            {
+            tabel.addRow(new Object[]{
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4)});
+            }
+            jTable1.setModel(tabel);
+            }
+        catch (Exception e){
+        }
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -175,13 +223,13 @@ public class CekMataKuliah extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField cari;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton tb_cari;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,7 @@ public class Koneksi {
     public static Connection koneksiDB() throws SQLException {
         if (mysqlkonek==null){
             try {
-                String DB="jdbc:mysql://127.0.0.1/project_uas_pbo";
+                String DB="jdbc:mysql://127.0.0.1/project_pbo";
                 String user="root";
                 String pass="";
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());

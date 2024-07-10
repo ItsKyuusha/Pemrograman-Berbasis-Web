@@ -193,15 +193,17 @@
                   <Component id="NAMA_LENGKAP" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tb_submit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tb_edit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tb_hapus" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tb_batal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="tb_cari" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cari" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tb_submit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tb_edit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tb_hapus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tb_batal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="56" max="32767" attributes="0"/>
