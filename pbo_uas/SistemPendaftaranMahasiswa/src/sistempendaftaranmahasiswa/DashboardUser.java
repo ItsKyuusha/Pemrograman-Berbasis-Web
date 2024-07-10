@@ -26,17 +26,22 @@ public class DashboardUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton4 = new javax.swing.JButton();
+        cek_prodi = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        pendaftaran = new javax.swing.JButton();
+        cek_krs = new javax.swing.JButton();
+        cek_mata_kuliah = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton4.setText("CEK PRODI");
+        cek_prodi.setText("CEK PRODI");
+        cek_prodi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cek_prodiActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel2.setText("© Copyright By UTM");
@@ -44,26 +49,31 @@ public class DashboardUser extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("DASHBOARD USER");
 
-        jButton1.setText("PENDAFTARAN");
-
-        jButton2.setText("CEK KRS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        pendaftaran.setText("PENDAFTARAN");
+        pendaftaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                pendaftaranActionPerformed(evt);
             }
         });
 
-        jButton3.setText("CEK MATA KULIAH");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        cek_krs.setText("CEK KRS");
+        cek_krs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                cek_krsActionPerformed(evt);
             }
         });
 
-        jButton5.setText("LOG OUT");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        cek_mata_kuliah.setText("CEK MATA KULIAH");
+        cek_mata_kuliah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                cek_mata_kuliahActionPerformed(evt);
+            }
+        });
+
+        logout.setText("LOG OUT");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
@@ -80,11 +90,11 @@ public class DashboardUser extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(pendaftaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cek_krs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cek_mata_kuliah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cek_prodi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(105, 105, 105))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -96,34 +106,48 @@ public class DashboardUser extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(pendaftaran)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(cek_krs)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(cek_mata_kuliah)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(cek_prodi)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(logout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(21, 21, 21))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void cek_krsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cek_krsActionPerformed
+        new CekKRS().show();
+        this.dispose();
+    }//GEN-LAST:event_cek_krsActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void cek_mata_kuliahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cek_mata_kuliahActionPerformed
+        new CekMataKuliah().show();
+        this.dispose();
+    }//GEN-LAST:event_cek_mata_kuliahActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        new Login().show();
+        this.dispose();
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void pendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pendaftaranActionPerformed
+        new PENDAFTARAN().show();
+        this.dispose();
+    }//GEN-LAST:event_pendaftaranActionPerformed
+
+    private void cek_prodiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cek_prodiActionPerformed
+        new CekProdi().show();
+        this.dispose();
+    }//GEN-LAST:event_cek_prodiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,12 +185,12 @@ public class DashboardUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton cek_krs;
+    private javax.swing.JButton cek_mata_kuliah;
+    private javax.swing.JButton cek_prodi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton logout;
+    private javax.swing.JButton pendaftaran;
     // End of variables declaration//GEN-END:variables
 }

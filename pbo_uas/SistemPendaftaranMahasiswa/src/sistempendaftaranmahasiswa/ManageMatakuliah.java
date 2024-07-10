@@ -53,6 +53,9 @@ public class ManageMatakuliah extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cari = new javax.swing.JTextField();
         tb_cari = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        KODE_PRODI = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jButton5.setText("jButton5");
 
@@ -68,13 +71,13 @@ public class ManageMatakuliah extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Kode Mata Kuliah", "Nama Mata Kuliah", "Dosen"
+                "Kode Mata Kuliah", "Nama Mata Kuliah", "Dosen", "Kode Prodi"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -135,26 +138,19 @@ public class ManageMatakuliah extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Kode Prpgram Studi");
+
+        jButton1.setText("Kembali Ke Dashboard");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(NAMA_MATKUL, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(64, 64, 64)
-                        .addComponent(KODE_MATKUL, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DOSEN, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(123, 123, 123))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
@@ -183,11 +179,35 @@ public class ManageMatakuliah extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tb_cari)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NAMA_MATKUL, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(64, 64, 64)
+                        .addComponent(KODE_MATKUL, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(DOSEN, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(KODE_PRODI))))
+                .addGap(123, 123, 123))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addComponent(jButton1)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -201,7 +221,11 @@ public class ManageMatakuliah extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DOSEN, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(KODE_PRODI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tb_submit)
                     .addComponent(tb_edit)
@@ -214,10 +238,11 @@ public class ManageMatakuliah extends javax.swing.JFrame {
                     .addComponent(tb_cari))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void KODE_MATKULActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KODE_MATKULActionPerformed
@@ -234,10 +259,11 @@ public class ManageMatakuliah extends javax.swing.JFrame {
 
     private void tb_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_submitActionPerformed
         try{
-            String sql="insert into matkul values('"
-                    +KODE_MATKUL.getText()+"','"
-                    +NAMA_MATKUL.getText()+"','"
-                    +DOSEN.getText()+"')";
+            String sql="insert into matkul (KODE_MATKUL, NAMA_MATKUL, DOSEN, KODE_PRODI) values('"
+                +KODE_MATKUL.getText()+"','"
+                +NAMA_MATKUL.getText()+"','"
+                +DOSEN.getText()+"','"
+                +KODE_PRODI.getText()+"')";
                  java.sql.Connection conn=(java.sql.Connection)sistempendaftaranmahasiswa.Koneksi.koneksiDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -254,14 +280,15 @@ public class ManageMatakuliah extends javax.swing.JFrame {
     private void tb_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_editActionPerformed
         try {
             java.sql.Connection conn = (java.sql.Connection) sistempendaftaranmahasiswa.Koneksi.koneksiDB();
-            String sql = "UPDATE matkul SET NAMA_MATKUL=?, DOSEN=? WHERE KODE_MATKUL=?";
+            String sql = "UPDATE matkul SET NAMA_MATKUL=?, DOSEN=?, KODE_PRODI=? WHERE KODE_MATKUL=?";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
 
             // Mengatur nilai untuk parameter
             
             pst.setString(1, NAMA_MATKUL.getText());
             pst.setString(2, DOSEN.getText());
-            pst.setString(3, KODE_MATKUL.getText());
+            pst.setString(3, KODE_PRODI.getText());
+            pst.setString(4, KODE_MATKUL.getText());
             
 
             // Menjalankan perintah update
@@ -295,6 +322,7 @@ public class ManageMatakuliah extends javax.swing.JFrame {
         KODE_MATKUL.setText("");
         NAMA_MATKUL.setText("");
         DOSEN.setText("");
+        KODE_PRODI.setText("");
         KODE_MATKUL.requestFocus();           
 
     }//GEN-LAST:event_tb_batalActionPerformed
@@ -309,6 +337,7 @@ public class ManageMatakuliah extends javax.swing.JFrame {
                 KODE_MATKUL.setText(rs.getString(1));
                 NAMA_MATKUL.setText(rs.getString(2));
                 DOSEN.setText(rs.getString(3));
+                KODE_PRODI.setText(rs.getString(4));
                 JOptionPane.showMessageDialog(null,"Data Mata Kuliah : "
                 + cari.getText() + " ditemukan, Apakah Anda Ingin Mengedit atau Menghapus?");
             }
@@ -317,22 +346,29 @@ public class ManageMatakuliah extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tb_cariActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new DashboardAdmin().show();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void tampil_data(){
     DefaultTableModel tabel=new DefaultTableModel();
     tabel.addColumn("Kode Mata Kuliah");
     tabel.addColumn("Nama Mata Kuliah");
     tabel.addColumn("Dosen");
+    tabel.addColumn("Kode Prodi");
     try {
         java.sql.Connection conn = (java.sql.Connection) sistempendaftaranmahasiswa.Koneksi.koneksiDB();
-String sql = "select * from matkul";
-java.sql.PreparedStatement pst= conn.prepareStatement ( sql);
-ResultSet rs = pst.executeQuery( sql);
+        String sql = "select * from matkul";
+        java.sql.PreparedStatement pst= conn.prepareStatement ( sql);
+        ResultSet rs = pst.executeQuery( sql);
       while(rs.next())
         {
         tabel.addRow(new Object[]{
             rs.getString(1),
             rs.getString(2),
-            rs.getString(3)});
+            rs.getString(3),
+            rs.getString(4)});
         }
         jTable1.setModel(tabel);
         }
@@ -379,14 +415,17 @@ ResultSet rs = pst.executeQuery( sql);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DOSEN;
     private javax.swing.JTextField KODE_MATKUL;
+    private javax.swing.JTextField KODE_PRODI;
     private javax.swing.JTextField NAMA_MATKUL;
     private javax.swing.JTextField cari;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton tb_batal;

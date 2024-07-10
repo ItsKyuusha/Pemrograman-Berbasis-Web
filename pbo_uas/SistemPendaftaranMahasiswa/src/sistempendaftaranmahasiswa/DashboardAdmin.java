@@ -27,10 +27,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        tb_data_mahasiswa = new javax.swing.JButton();
+        tb_manage_matkul = new javax.swing.JButton();
+        tb_manage_prodi = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,23 +38,33 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("DASHBOARD ADMIN");
 
-        jButton1.setText("DATA MAHASISWA");
-
-        jButton2.setText("MANAGE MATA KULIAH");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        tb_data_mahasiswa.setText("DATA MAHASISWA");
+        tb_data_mahasiswa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                tb_data_mahasiswaActionPerformed(evt);
             }
         });
 
-        jButton3.setText("MANAGE PRODI");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        tb_manage_matkul.setText("MANAGE MATA KULIAH");
+        tb_manage_matkul.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                tb_manage_matkulActionPerformed(evt);
             }
         });
 
-        jButton4.setText("LOG OUT");
+        tb_manage_prodi.setText("MANAGE PRODI");
+        tb_manage_prodi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tb_manage_prodiActionPerformed(evt);
+            }
+        });
+
+        logout.setText("LOG OUT");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel2.setText("© Copyright By UTM");
@@ -70,10 +80,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tb_data_mahasiswa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tb_manage_matkul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tb_manage_prodi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(jLabel2)))
@@ -85,28 +95,41 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(tb_data_mahasiswa)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(tb_manage_matkul)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(tb_manage_prodi)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(logout)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void tb_manage_matkulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_manage_matkulActionPerformed
+        new ManageMatakuliah().show();
+        this.dispose();
+    }//GEN-LAST:event_tb_manage_matkulActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void tb_manage_prodiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_manage_prodiActionPerformed
+        new ManageProdi().show();
+        this.dispose();
+    }//GEN-LAST:event_tb_manage_prodiActionPerformed
+
+    private void tb_data_mahasiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_data_mahasiswaActionPerformed
+        new DataMahasiswa().show();
+        this.dispose();
+    }//GEN-LAST:event_tb_data_mahasiswaActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        new Login().show();
+        this.dispose();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,11 +167,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton logout;
+    private javax.swing.JButton tb_data_mahasiswa;
+    private javax.swing.JButton tb_manage_matkul;
+    private javax.swing.JButton tb_manage_prodi;
     // End of variables declaration//GEN-END:variables
 }
